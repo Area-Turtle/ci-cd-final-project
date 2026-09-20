@@ -42,11 +42,11 @@ ci-cd-final-project
 - Create a new pipeline and a workspace called "output"
 - Add the following redhat modules steps in this order:
    - "cleanup" >  source*: output
-   - "git-clone" > url*: https://github.com/<Username>/ci-cd-final-project.git 
+   - "git-clone" > url*: https://github.com/(Username)/ci-cd-final-project.git 
    - "eslint" linting > source* output
    - "jest-tests" > source* output
    - "buildah" task > IMAGE* $(params.build-image) | source* output | Parameter: Name*: build-image | Default value: image-registry.           openshift-image-registry.svc:5000/<SN_ICR_NAMESPACE>/tekton-lab:latest
 - Add the final step of deploying the application to the lab openshift cluster using the "OpenShift client" task and the oc deploy command.
    " oc create deployment $(params.app-name) --image=$(params.build-image) --dry-run=client -o yaml | oc apply -f - "
    > Display name*: Deploy | Script*:  oc create deployment $(params.app-name) --image=$(params.build-image) --dry-run=client -o yaml | oc apply -f - | Parameters: Name: app-name | Default value: ci-cd
-- Start Pipeline: app-name: ci-cd | build-image: image-registry.openshift-image-registry.svc:5000/<SN_ICR_NAMESPACE>/tekton-lab:latest |  Workspaces: output* PersistentVolumeClaim | PVC oc-lab-pvc
+- Start Pipeline: app-name: ci-cd | build-image: image-registry.openshift-image-registry.svc:5000/(SN_ICR_NAMESPACE)/tekton-lab:latest |  Workspaces: output* PersistentVolumeClaim | PVC oc-lab-pvc
