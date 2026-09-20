@@ -31,7 +31,7 @@ ci-cd-final-project
    ```bash
    npm install
 
-## PVC - OpenShift ENV
+## PVC - OpenShift ENV Setup/Run
 - In the terminal, install the cleanup, eslint, and jest-test tasks by applying the tasks.yml file with kubectl apply -f .tekton/tasks.yml
    command.
 - Open the OpenShift console from the lab environment.
